@@ -201,6 +201,85 @@ export const HOMEPAGE_GROQ = (locale = "en") => `
   }
 }`;
 
+// Product queries
+
+export const ALL_PRODUCTS_GROQ = (locale = "en") => `
+*[_type == "product"] | order(_createdAt desc) {
+  _id,
+  "name": name.${locale},
+  "slug": slug.current,
+  price,
+  compareAtPrice,
+  images[] {
+    _key,
+    "url": asset->url,
+    "alt": alt,
+    "lqip": asset->metadata.lqip
+  },
+  sizes,
+  collection-> {
+    "title": title.${locale},
+    "slug": slug.current
+  }
+}`;
+
+export const PRODUCT_BY_SLUG_GROQ = (slug: string, locale = "en") => `
+*[_type == "product" && slug.current == "${slug}"][0] {
+  _id,
+  "name": name.${locale},
+  "slug": slug.current,
+  "description": description.${locale},
+  price,
+  compareAtPrice,
+  images[] {
+    _key,
+    "url": asset->url,
+    "alt": alt,
+    "lqip": asset->metadata.lqip
+  },
+  sizes,
+  collection-> {
+    "title": title.${locale},
+    "slug": slug.current
+  },
+  "seo": ${LOCALIZED_SEO(locale)}
+}`;
+
+export const PRODUCTS_BY_COLLECTION_GROQ = (collectionSlug: string, locale = "en") => `
+*[_type == "product" && collection->slug.current == "${collectionSlug}"] | order(_createdAt desc) {
+  _id,
+  "name": name.${locale},
+  "slug": slug.current,
+  price,
+  compareAtPrice,
+  images[] {
+    _key,
+    "url": asset->url,
+    "alt": alt,
+    "lqip": asset->metadata.lqip
+  },
+  sizes,
+  collection-> {
+    "title": title.${locale},
+    "slug": slug.current
+  }
+}`;
+
+export const COLLECTIONS_GROQ = (locale = "en") => `
+*[_type == "collection"] | order(order asc) {
+  _id,
+  "title": title.${locale},
+  "slug": slug.current,
+  "description": description.${locale},
+  "image": image.asset->url
+}`;
+
+export const PRODUCT_SEO = (slug: string, locale = "en") => `
+*[_type == "product" && slug.current == "${slug}"][0] {
+  "seo": ${LOCALIZED_SEO(locale)},
+  "name": name.${locale}
+}`;
+
 export function contact({ name, email, subject, message }: any) {
   return fetch("/api/contact", {
     method: "POST",
@@ -239,10 +318,27 @@ export const WORK_SITEMAP = (locale = "sv") => `
 }
 `;
 
+export const PRODUCTS_SITEMAP = (locale = "sv") => `
+*[_type == "product"] {
+  "slug": slug.current,
+  "lastModified": _updatedAt,
+  "priority": 0.9
+}
+`;
+export const COLLECTIONS_SITEMAP = (locale = "sv") => `
+*[_type == "collection"] {
+  "slug": slug.current,
+  "lastModified": _updatedAt,
+  "priority": 0.8
+}
+`;
+
 export const SITEMAP_GROQ = (lang = "sv") => `
 {
   "page": ${PAGES_SITEMAP(lang)},
   "articles": ${ARTICLES_SITEMAP(lang)},
   "services": ${SERVICES_SITEMAP(lang)},
-  "work": ${WORK_SITEMAP(lang)}
+  "work": ${WORK_SITEMAP(lang)},
+  "products": ${PRODUCTS_SITEMAP(lang)},
+  "collections": ${COLLECTIONS_SITEMAP(lang)}
 }`;

@@ -33,4 +33,9 @@ export const en: Record<string, string> = {
   subtotal: "Subtotal",
   quantity: "Quantity",
   remove: "Remove",
+  close: "Close",
+  continue_shopping: "Continue shopping",
+  your_cart: "Your cart",
+  select_size: "Select size",
+  free_shipping: "Free shipping",
 };

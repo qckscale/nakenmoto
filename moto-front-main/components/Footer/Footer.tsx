@@ -32,6 +32,7 @@ interface FooterProps {
   services: any[];
 }
 export function Footer({ footer, services }: FooterProps) {
+  if (!footer) return null;
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "sv";
   const defaultLinks = useMemo(
@@ -50,13 +51,13 @@ export function Footer({ footer, services }: FooterProps) {
     [locale]
   );
 
-  const halfIndex = useMemo(() => Math.ceil(services.length / 2), [services]);
+  const halfIndex = useMemo(() => Math.ceil((services || []).length / 2), [services]);
   const firstHalf = useMemo(
-    () => services.slice(0, halfIndex),
+    () => (services || []).slice(0, halfIndex),
     [services, halfIndex]
   );
   const secondHalf = useMemo(
-    () => services.slice(halfIndex),
+    () => (services || []).slice(halfIndex),
     [services, halfIndex]
   );
 

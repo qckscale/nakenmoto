@@ -189,7 +189,7 @@ button {
 }
 
 .hide-on-mob {
-  @include mobile {
+  @include tablet {
     display: none;
   }
 }

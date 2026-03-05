@@ -15,8 +15,12 @@ import localeTitle from './localeTitle'
 import cookieSettings from './cookieSettings'
 import work from './work'
 import testimonial from './testimonial'
+import collection from './collection'
+import product from './product'
 
 export const schemaTypes = [
+  product,
+  collection,
   work,
   testimonial,
   homePage,

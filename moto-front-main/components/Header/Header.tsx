@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { translate } from "@/lib/utils/lang/translate";
 import { i18Link } from "@/lib/utils/lang/getLink";
+import { CartIcon } from "@/components/CartIcon/CartIcon";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +54,7 @@ export function Header() {
           </Link>
         </li>
         <li
-          className={`d-flex align-center ${styles.menuListGutter} ${
+          className={`${styles.menuListGutter} ${
             isOpen ? styles.isOpen : ""
           }`}
         >
@@ -75,12 +76,14 @@ export function Header() {
           <Link href={i18Link("contact", locale)}>
             {translate("contact", locale)}
           </Link>
-          <div className="hide-on-mob">
+          <div className="hide-on-mob d-flex align-center" style={{ gap: "16px" }}>
+            <CartIcon />
             <LanguageSelector size={24} headerBg={false} locale={locale} />
           </div>
         </li>
         <li className={styles.burgerItem}>
           <div className="d-flex align-center">
+            <CartIcon />
             <LanguageSelector locale={locale} headerBg={false} />
             <button
               aria-label="Toggle navigation menu"

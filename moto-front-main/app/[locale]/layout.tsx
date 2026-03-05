@@ -9,6 +9,8 @@ import {
   client,
 } from "@/lib/sanity";
 import { ExternalScripts } from "@/components/ExternalScripts/ExternalScripts";
+import { CartProvider } from "@/lib/cart";
+import { CartDrawer } from "@/components/CartDrawer/CartDrawer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +26,8 @@ export async function generateMetadata({
     { next: { revalidate: 60 } },
   );
   return {
-    title: generalSettings.seo?.title || "NakenMoto",
-    description: generalSettings.seo?.content || "Moto streetwear for naked bike riders",
+    title: generalSettings?.seo?.title || "NakenMoto",
+    description: generalSettings?.seo?.content || "Moto streetwear for naked bike riders",
   };
 }
 
@@ -45,10 +47,13 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer footer={settings.footer} services={services} />
-        <ExternalScripts cookieSettings={settings.cookieSettings} nonce={""} />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer footer={settings?.footer} services={services || []} />
+          <CartDrawer />
+          <ExternalScripts cookieSettings={settings?.cookieSettings} nonce={""} />
+        </CartProvider>
       </body>
     </html>
   );

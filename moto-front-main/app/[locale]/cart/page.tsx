@@ -1,14 +1,20 @@
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Cart | NakenMoto",
-};
+import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useCart } from "@/lib/cart";
+import { i18Link } from "@/lib/utils/lang/getLink";
 
-export default async function CartPage() {
-  return (
-    <div className="container-width container-width-page">
-      <h1 className="heading-2">Cart</h1>
-      <p style={{ textAlign: "center", color: "#6b6b6b" }}>Your cart is empty</p>
-    </div>
-  );
+export default function CartPage() {
+  const { openDrawer } = useCart();
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/en") ? "en" : "sv";
+
+  useEffect(() => {
+    openDrawer();
+    router.replace(i18Link("shop", locale));
+  }, [openDrawer, router, locale]);
+
+  return null;
 }

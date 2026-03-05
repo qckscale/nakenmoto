@@ -16,14 +16,14 @@ export default async function Home({
   const [data] = await Promise.all([
     client.fetch<any>(HOMEPAGE_GROQ(locale), {}, { next: { revalidate: 60 } }),
   ]);
-  const { page, articles, work } = data;
+  const { page, articles, work } = data || {};
 
   return (
     <main className={styles.homepageContainer}>
       <section
         className={styles.heroSection}
         style={{
-          background: page.homePage?.heroImage
+          background: page?.homePage?.heroImage
             ? `url(${page.homePage.heroImage})`
             : undefined,
           backgroundSize: "cover",
@@ -33,17 +33,17 @@ export default async function Home({
         <div className="container-width">
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              {page.homePage?.title || "NakenMoto"}
+              {page?.homePage?.title || "NakenMoto"}
             </h1>
             <div className={styles.heroCta}>
               <Link tabIndex={-1} href={i18Link("shop", locale)}>
                 <button className="primary">
-                  {page.homePage?.ctaPrimary || "Shop now"}
+                  {page?.homePage?.ctaPrimary || "Shop now"}
                 </button>
               </Link>
               <Link tabIndex={-1} href={i18Link("page/about-us", locale)}>
                 <button className="secondary">
-                  {page.homePage?.ctaSecondary || "Our story"}
+                  {page?.homePage?.ctaSecondary || "Our story"}
                 </button>
               </Link>
             </div>
@@ -51,10 +51,10 @@ export default async function Home({
         </div>
       </section>
       <div>
-        <Services isHome services={page.homePage?.services || []} />
+        <Services isHome services={page?.homePage?.services || []} />
         <Work isHome work={work} />
-        <News isHome title={page.homePage?.newsTitle} articles={articles} />
-        <ContactForm services={page.homePage?.services || []} />
+        <News isHome title={page?.homePage?.newsTitle} articles={articles} />
+        <ContactForm services={page?.homePage?.services || []} />
       </div>
     </main>
   );

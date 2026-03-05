@@ -6,9 +6,9 @@ import {codeInput} from '@sanity/code-input'
 
 export default defineConfig({
   name: 'default',
-  title: 'madit-web',
+  title: 'nakenmoto',
 
-  projectId: 'rtmjambs',
+  projectId: 'ujhkm2yt',
   dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [
@@ -17,6 +17,12 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            S.listItem()
+              .title('Products')
+              .child(S.documentTypeList('product').title('Products')),
+            S.listItem()
+              .title('Collections')
+              .child(S.documentTypeList('collection').title('Collections')),
             S.listItem().title('Articles').child(S.documentTypeList('post').title('Articles')),
             S.listItem()
               .title('Categories')

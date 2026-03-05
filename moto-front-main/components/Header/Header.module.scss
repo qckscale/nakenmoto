@@ -52,8 +52,10 @@
 }
 
 .menuListGutter {
+  display: flex;
+  align-items: center;
   gap: 24px;
-  @include mobile {
+  @include tablet {
     width: 100%;
     left: 0;
     position: absolute;
@@ -79,7 +81,7 @@
 
 .burgerItem {
   display: none;
-  @include mobile {
+  @include tablet {
     display: block;
   }
 }

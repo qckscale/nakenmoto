@@ -1,0 +1,185 @@
+@use "../../../../styles/variables" as *;
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+.gallery {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+
+  @include tablet {
+    position: static;
+  }
+}
+
+.mainImage {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: $color-surface-alt;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnails {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+}
+
+.thumb {
+  all: unset;
+  width: 64px;
+  height: 80px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.thumbActive {
+    opacity: 1;
+    border-color: $color-foreground;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  padding-top: $spacing-md;
+}
+
+.collection {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: $color-foreground-muted;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: 400;
+  margin: $spacing-sm 0 $spacing-md;
+  letter-spacing: 0.3px;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.priceBlock {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
+}
+
+.price {
+  font-size: 18px;
+}
+
+.salePrice {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.comparePrice {
+  font-size: 16px;
+  color: $color-foreground-muted;
+  text-decoration: line-through;
+}
+
+.sizeSection {
+  margin-bottom: $spacing-lg;
+}
+
+.sizeLabel {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $color-foreground-muted;
+  margin-bottom: $spacing-sm;
+}
+
+.sizes {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.sizeBtn {
+  all: unset;
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $color-border;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: $color-foreground;
+  }
+
+  &.sizeActive {
+    background: $color-foreground;
+    color: $color-surface;
+    border-color: $color-foreground;
+  }
+}
+
+.addToCart {
+  width: 100%;
+  padding: 16px;
+  background: $color-accent;
+  color: $color-surface;
+  border: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 0;
+  margin-bottom: $spacing-xl;
+
+  &:hover:not(:disabled) {
+    background: $color-accent-hover;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.description {
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-lg;
+  font-size: 15px;
+  line-height: 1.7;
+  color: $color-foreground-muted;
+}

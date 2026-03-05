@@ -33,4 +33,9 @@ export const sv: Record<string, string> = {
   subtotal: "Delsumma",
   quantity: "Antal",
   remove: "Ta bort",
+  close: "Stäng",
+  continue_shopping: "Fortsätt handla",
+  your_cart: "Din varukorg",
+  select_size: "Välj storlek",
+  free_shipping: "Fri frakt",
 };

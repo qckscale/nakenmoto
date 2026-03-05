@@ -1,0 +1,33 @@
+@use "../../styles/variables" as *;
+
+.cartIcon {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: $color-foreground;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: $color-accent;
+  color: $color-surface;
+  font-size: 10px;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
