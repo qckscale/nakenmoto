@@ -1,0 +1,105 @@
+@use "../../styles/variables" as *;
+
+.footer {
+  margin-top: 120px;
+  display: flex;
+  width: 100%;
+  padding-bottom: 80px;
+  border-top: 1px solid $color-border;
+  padding-top: 60px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footerContent {
+    gap: 60px;
+    @include tablet {
+      flex-wrap: wrap;
+    }
+  }
+  .footerItem {
+    color: $color-foreground;
+    white-space: nowrap;
+    @include tablet {
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    &:first-child {
+      width: 50%;
+
+      @include tablet {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      color: $color-foreground;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      @include mobile {
+        margin-bottom: 12px;
+        width: 100%;
+      }
+    }
+
+    a {
+      color: $color-foreground-muted;
+      margin-bottom: 10px;
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-foreground;
+      }
+    }
+  }
+}
+
+.companyDetailItem {
+  margin-bottom: 10px;
+  color: $color-foreground-muted;
+}
+
+.copyright {
+  background: $color-background-dark;
+  padding: 25px 0;
+  color: $color-surface;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  .copyrightContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+}
+
+.socialIcons {
+  @include mobile {
+    margin: 30px auto 0;
+  }
+  a {
+    margin-left: 20px;
+  }
+}
+
+.footerDoubleLists {
+  gap: 30px;
+  @include mobile {
+    flex-wrap: wrap;
+  }
+}

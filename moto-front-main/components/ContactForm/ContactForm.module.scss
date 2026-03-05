@@ -1,0 +1,50 @@
+@use "../../styles/variables" as *;
+
+.contactForm {
+  margin-bottom: 80px;
+}
+
+.sectionWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contactFormForm {
+  width: 100%;
+}
+
+.contactFormInput {
+  margin-bottom: 16px;
+
+  label {
+    width: 100%;
+    display: block;
+    font-weight: 300;
+    color: $color-foreground;
+    margin-bottom: 4px;
+  }
+
+  select,
+  input,
+  textarea {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid $color-border;
+    background: $color-surface;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: $border-radius;
+    color: $color-foreground;
+  }
+
+  textarea {
+    min-height: 70px;
+  }
+}
+
+.submitSuccess {
+  color: $color-foreground;
+  font-size: 18px;
+  text-align: center;
+}

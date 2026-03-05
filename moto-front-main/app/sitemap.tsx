@@ -1,0 +1,99 @@
+import { SITEMAP_GROQ, client } from "@/lib/sanity";
+import { MetadataRoute } from "next";
+
+interface Slug {
+  slug: string;
+  priority: number;
+  lastModified: string;
+}
+
+async function getSitemap(locale = "sv"): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.BASE_URL;
+
+  const [{ page, articles, services, work }] = await Promise.all([
+    client.fetch<any>(SITEMAP_GROQ(locale), {}, { next: { revalidate: 60 } }),
+  ]);
+
+  return [
+    ...addSlugPrefixes(page, "page"),
+    ...addSlugPrefixes(articles, "news"),
+    ...addSlugPrefixes(services, "collections"),
+    ...addSlugPrefixes(work, "lookbook"),
+  ].map((item: Slug) => {
+    return {
+      url: `${baseUrl}/${locale}/${item.slug}`,
+      priority: item.priority,
+      lastModified: item.lastModified
+        ? new Date(item.lastModified)
+        : new Date().toISOString(),
+      changeFrequency: "daily",
+    };
+  }, []);
+}
+
+function addSlugPrefixes(slug: Slug[], prefix: string): any[] {
+  return slug.map((item: Slug) => ({
+    ...slug,
+    slug: `${prefix}/${item.slug}`,
+  }));
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const baseUrl = process.env.BASE_URL;
+    const sitemapSv = await getSitemap("sv");
+    const sitemapEn = await getSitemap("en");
+
+    const staticPages: any[] = [
+      {
+        url: `${baseUrl}/sv/shop`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${baseUrl}/en/shop`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${baseUrl}/sv/collections`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${baseUrl}/en/collections`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${baseUrl}/sv/lookbook`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      {
+        url: `${baseUrl}/en/lookbook`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+    ];
+    return [
+      {
+        url: `${baseUrl}/`,
+        lastModified: new Date().toISOString(),
+        changeFrequency: "daily",
+        priority: 1.0,
+      },
+      ...staticPages,
+      ...sitemapSv,
+      ...sitemapEn,
+    ];
+  } catch (err) {
+    return [];
+  }
+}

@@ -1,0 +1,24 @@
+@use "../../styles/variables" as *;
+
+.codeBlockToolbar {
+  background: $color-surface-alt;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid $color-border;
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $color-foreground;
+    padding: 4px 30px;
+    gap: 8px;
+  }
+}
+.codeBlock {
+  margin-top: 0;
+  padding: 30px;
+  border-radius: 0 0 4px 4px;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: $color-background-dark;
+  overflow: auto;
+}

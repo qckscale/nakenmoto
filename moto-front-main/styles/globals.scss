@@ -1,0 +1,195 @@
+@use "reset";
+@use "variables" as *;
+
+:root {
+  --border-radius: 4px;
+  --primary: #{$color-background-dark};
+  --white: #{$color-surface};
+}
+
+*:focus-visible {
+  outline-offset: 4px;
+  outline: 2px solid $color-accent;
+}
+
+body {
+  background: $color-background;
+  color: $color-foreground;
+}
+
+.container-width {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+
+  &.container-width-page {
+    padding: 40px 16px 120px;
+  }
+
+  &.small {
+    max-width: 900px;
+  }
+
+  @media (max-width: 1280px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+button {
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  border-radius: 37px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &.fullwidth {
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &.primary {
+    background: $color-accent;
+    border: 2px solid $color-accent;
+    color: $color-surface;
+  }
+  &.secondary {
+    background: transparent;
+    border: 2px solid $color-foreground;
+    color: $color-foreground;
+  }
+  @include mobile {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+.heading-3 {
+  color: $color-foreground;
+  font-size: 19px;
+  line-height: 32px;
+}
+
+.heading-2 {
+  color: $color-foreground;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 0;
+
+  &::after {
+    display: block;
+    content: "";
+    width: 60px;
+    height: 2px;
+    background-color: $color-accent;
+    margin: 20px auto 40px;
+
+    @include mobile {
+      margin: 20px auto 20px;
+    }
+  }
+  @include mobile {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
+
+.w100 {
+  width: 100%;
+}
+
+.not-found {
+  text-align: center;
+  color: $color-foreground;
+  padding: 120px 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+.relative {
+  position: relative;
+}
+
+.unstyled {
+  all: unset;
+}
+
+.no-outline {
+  outline: none;
+}
+
+.list-wrapper {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+
+  .list-wrapper__item {
+    background: $color-surface-alt;
+    border-radius: var(--border-radius);
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    color: $color-foreground;
+    width: calc(33.33% - 22.5px);
+
+    @include tablet {
+      width: calc(50% - 15px);
+    }
+    @include mobile {
+      width: calc(100%);
+    }
+  }
+}
+
+.hide-on-mob {
+  @include mobile {
+    display: none;
+  }
+}

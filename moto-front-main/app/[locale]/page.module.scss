@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+
+.homepageContainer {
+  overflow: hidden;
+}
+
+.heroSection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  background-color: $color-background-dark;
+
+  @include mobile {
+    background-position: center top -180px;
+  }
+}
+
+.heroContent {
+  display: flex;
+  height: calc(100vh + 200px);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heroTitle {
+  color: $color-surface;
+  margin-top: 0;
+  font-size: 75px;
+  font-weight: 700;
+  letter-spacing: -2px;
+
+  @include mobile {
+    font-size: 40px;
+  }
+}
+
+.heroCta {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-right: 12px;
+  }
+
+  .primary {
+    background: $color-surface;
+    border-color: $color-surface;
+    color: $color-foreground;
+  }
+
+  .secondary {
+    border-color: $color-surface;
+    color: $color-surface;
+  }
+}

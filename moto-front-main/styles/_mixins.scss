@@ -1,0 +1,7 @@
+@use "variables" as *;
+
+// Re-export breakpoints from variables
+// Use: @include mobile { ... }
+// Use: @include tablet { ... }
+// Use: @include desktop { ... }
+// Use: @include breakpoint(sm) { ... }

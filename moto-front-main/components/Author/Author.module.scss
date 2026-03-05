@@ -1,0 +1,61 @@
+@use "../../styles/variables" as *;
+
+.author {
+  display: flex;
+  gap: 30px;
+  border-top: 1px solid $color-border;
+  margin-top: 40px;
+  padding-top: 40px;
+  .authorImageWrapper {
+    img {
+      display: block;
+      height: 120px;
+      border-radius: 4px;
+    }
+  }
+
+  .authorContentWrapper {
+    .authorName {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $color-foreground;
+      margin: 0;
+    }
+    .authorTitle {
+      margin-top: 16px;
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 0;
+      color: $color-foreground-muted;
+    }
+    .publishDate {
+      margin: 8px 0;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: $color-foreground-muted;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  .authorBadge {
+    background: $color-accent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid $color-border;
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    margin: 0;
+    color: $color-surface;
+    border-radius: 10px;
+  }
+
+  .authorMeta {
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    margin-bottom: 20px;
+  }
+}

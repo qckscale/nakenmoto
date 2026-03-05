@@ -1,0 +1,55 @@
+@use "../../styles/variables" as *;
+
+.employees {
+  color: $color-foreground;
+  margin-bottom: 80px;
+
+  .employeesAvatar {
+    border-radius: $border-radius;
+    object-fit: cover;
+  }
+  .employeesList {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .employeeItem {
+      width: calc((100% / 3) - 22.5px);
+
+      @include tablet {
+        width: calc(50% - 22.5px);
+      }
+      @include mobile {
+        width: 100% !important;
+      }
+    }
+    .employeeImageWrapper {
+      width: 100%;
+      height: 300px;
+      border-radius: $border-radius;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+      position: relative;
+      background: $color-surface-alt;
+
+      img {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        object-position: center top;
+        object-fit: cover;
+      }
+    }
+  }
+  h3 {
+    margin-bottom: 0;
+  }
+  p {
+    margin-top: 0;
+    color: $color-foreground-muted;
+  }
+}

@@ -1,0 +1,47 @@
+@use "../../styles/variables" as *;
+
+.blockContent {
+  color: $color-foreground;
+  font-weight: 300;
+
+  blockquote {
+    font-style: italic;
+    margin: 20px 0;
+    display: inline-block;
+    border-radius: $border-radius;
+    padding: 20px;
+    border-left: 3px solid $color-accent;
+    background: $color-surface-alt;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: $color-foreground;
+    text-decoration: underline;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.blockContentImage {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border-radius: $border-radius;
+}
