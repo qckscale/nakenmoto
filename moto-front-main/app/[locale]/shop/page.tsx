@@ -5,10 +5,11 @@ import {
   COLLECTIONS_GROQ,
   client,
 } from "@/lib/sanity";
-import { Product, Collection } from "@/types/product";
+import { ProductContent, Product, Collection } from "@/types/product";
 import { ProductGrid } from "@/components/ProductGrid/ProductGrid";
 import { CollectionFilter } from "@/components/CollectionFilter/CollectionFilter";
 import { Suspense } from "react";
+import { getAllProductPricing } from "@/lib/supabase/products";
 
 export const metadata: Metadata = {
   title: "Shop | NakenMoto",
@@ -24,14 +25,14 @@ export default async function ShopPage({
   const { locale } = await params;
   const { collection } = await searchParams;
 
-  const [products, collections] = await Promise.all([
+  const [productContent, collections, allPricing] = await Promise.all([
     collection
-      ? client.fetch<Product[]>(
+      ? client.fetch<ProductContent[]>(
           PRODUCTS_BY_COLLECTION_GROQ(collection, locale),
           {},
           { next: { revalidate: 60 } }
         )
-      : client.fetch<Product[]>(
+      : client.fetch<ProductContent[]>(
           ALL_PRODUCTS_GROQ(locale),
           {},
           { next: { revalidate: 60 } }
@@ -41,7 +42,17 @@ export default async function ShopPage({
       {},
       { next: { revalidate: 60 } }
     ),
+    getAllProductPricing(),
   ]);
+
+  const pricingMap = new Map(allPricing.map((p) => [p.sanity_id, p]));
+
+  const products: Product[] = (productContent || [])
+    .filter((pc) => pricingMap.has(pc._id))
+    .map((pc) => ({
+      ...pc,
+      pricing: pricingMap.get(pc._id)!,
+    }));
 
   return (
     <div className="container-width container-width-page">
@@ -52,7 +63,7 @@ export default async function ShopPage({
           locale={locale as "sv" | "en"}
         />
       </Suspense>
-      <ProductGrid products={products || []} locale={locale} />
+      <ProductGrid products={products} locale={locale} />
     </div>
   );
 }

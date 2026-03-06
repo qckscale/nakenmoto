@@ -38,4 +38,10 @@ export const en: Record<string, string> = {
   your_cart: "Your cart",
   select_size: "Select size",
   free_shipping: "Free shipping",
+  product_question: "Product question",
+  returns_exchanges: "Returns & exchanges",
+  shipping: "Shipping",
+  general_inquiry: "General inquiry",
+  out_of_stock: "Out of stock",
+  featured_products: "Featured products",
 };

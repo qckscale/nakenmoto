@@ -6,7 +6,6 @@ export default defineType({
   type: 'document',
   groups: [
     {name: 'content', title: 'Content'},
-    {name: 'pricing', title: 'Pricing'},
     {name: 'seo', title: 'SEO'},
   ],
   fields: [
@@ -48,42 +47,11 @@ export default defineType({
       validation: (Rule) => Rule.min(1).error('At least one image is required'),
     }),
     defineField({
-      name: 'sizes',
-      title: 'Available Sizes',
-      type: 'array',
-      group: 'content',
-      of: [{type: 'string'}],
-      options: {
-        list: [
-          {title: 'XS', value: 'XS'},
-          {title: 'S', value: 'S'},
-          {title: 'M', value: 'M'},
-          {title: 'L', value: 'L'},
-          {title: 'XL', value: 'XL'},
-          {title: 'XXL', value: 'XXL'},
-        ],
-      },
-    }),
-    defineField({
       name: 'collection',
       title: 'Collection',
       type: 'reference',
       group: 'content',
       to: [{type: 'collection'}],
-    }),
-    defineField({
-      name: 'price',
-      title: 'Price (SEK)',
-      type: 'number',
-      group: 'pricing',
-      validation: (Rule) => Rule.required().min(0),
-    }),
-    defineField({
-      name: 'compareAtPrice',
-      title: 'Compare at Price (SEK)',
-      type: 'number',
-      group: 'pricing',
-      description: 'Original price for sale display. Leave empty if not on sale.',
     }),
     defineField({
       name: 'seo',

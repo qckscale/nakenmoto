@@ -16,10 +16,6 @@ interface FooterProps {
       link: string;
       isCustomLink?: boolean;
     }[];
-    services: {
-      title: string;
-      link: string;
-    }[];
     name: string;
     address: string;
     phone: string;
@@ -29,9 +25,9 @@ interface FooterProps {
     twitter: string;
     instagram: string;
   };
-  services: any[];
+  collections: any[];
 }
-export function Footer({ footer, services }: FooterProps) {
+export function Footer({ footer, collections }: FooterProps) {
   if (!footer) return null;
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "sv";
@@ -51,14 +47,14 @@ export function Footer({ footer, services }: FooterProps) {
     [locale]
   );
 
-  const halfIndex = useMemo(() => Math.ceil((services || []).length / 2), [services]);
+  const halfIndex = useMemo(() => Math.ceil((collections || []).length / 2), [collections]);
   const firstHalf = useMemo(
-    () => (services || []).slice(0, halfIndex),
-    [services, halfIndex]
+    () => (collections || []).slice(0, halfIndex),
+    [collections, halfIndex]
   );
   const secondHalf = useMemo(
-    () => (services || []).slice(halfIndex),
-    [services, halfIndex]
+    () => (collections || []).slice(halfIndex),
+    [collections, halfIndex]
   );
 
   return (
@@ -78,8 +74,8 @@ export function Footer({ footer, services }: FooterProps) {
             <div className={`d-flex ${styles.footerDoubleLists} wrap`}>
               <ul>
                 {firstHalf?.map((link: any) => (
-                  <li key={`${link.url}-${link.title}`}>
-                    <Link href={i18Link(`collections/${link.url}`, locale)}>
+                  <li key={`${link.slug}-${link.title}`}>
+                    <Link href={i18Link(`shop?collection=${link.slug}`, locale)}>
                       {link.title}
                     </Link>
                   </li>
@@ -87,8 +83,8 @@ export function Footer({ footer, services }: FooterProps) {
               </ul>
               <ul>
                 {secondHalf?.map((link: any) => (
-                  <li key={`${link.url}-${link.title}`}>
-                    <Link href={i18Link(`collections/${link.url}`, locale)}>
+                  <li key={`${link.slug}-${link.title}`}>
+                    <Link href={i18Link(`shop?collection=${link.slug}`, locale)}>
                       {link.title}
                     </Link>
                   </li>

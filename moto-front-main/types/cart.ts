@@ -8,5 +8,6 @@ export interface CartItem {
     price: number;
     compareAtPrice: number | null;
     image: string;
+    currency: "SEK" | "EUR";
   };
 }

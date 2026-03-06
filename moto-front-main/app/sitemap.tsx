@@ -10,14 +10,14 @@ interface Slug {
 async function getSitemap(locale = "sv"): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.BASE_URL;
 
-  const [{ page, articles, services, work }] = await Promise.all([
+  const [{ page, articles, work, products, collections }] = await Promise.all([
     client.fetch<any>(SITEMAP_GROQ(locale), {}, { next: { revalidate: 60 } }),
   ]);
 
   return [
     ...addSlugPrefixes(page, "page"),
     ...addSlugPrefixes(articles, "news"),
-    ...addSlugPrefixes(services, "collections"),
+    ...addSlugPrefixes(products || [], "shop"),
     ...addSlugPrefixes(work, "lookbook"),
   ].map((item: Slug) => {
     return {

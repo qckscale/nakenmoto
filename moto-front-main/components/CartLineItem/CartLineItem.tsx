@@ -50,7 +50,7 @@ export function CartLineItem({ item, locale }: Props) {
       </div>
       <div className={styles.right}>
         <div className={styles.lineTotal}>
-          {formatPrice(item.product.price * item.quantity, locale)}
+          {formatPrice(item.product.price * item.quantity, locale, item.product.currency)}
         </div>
         <button
           className={styles.remove}

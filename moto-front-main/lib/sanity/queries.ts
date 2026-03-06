@@ -38,10 +38,6 @@ export const GENERAL_SETTINGS = (locale = "en") => `
   },
   footer-> {
     ${FOOTER_GROQ(locale)}
-  },
-  services[]-> {
-    "title": title.${locale},
-    "ingress": ingress.${locale},
   }
 }`;
 
@@ -54,15 +50,23 @@ export const HOME_PAGE_SETTINGS = (locale = "en") => `
     "title": title.${locale},
     "ctaPrimary": ctaPrimary.${locale},
     "ctaSecondary": ctaSecondary.${locale},
-    "serviceTitle": serviceTitle.${locale},
+    "featuredProductsTitle": featuredProductsTitle.${locale},
     "testimonialTitle": testimonialTitle.${locale},
     "testimonialSubtitle": testimonialSubtitle.${locale},
-    services[][0...6]-> {
-      ...,
-      "icon": icon.asset->url,
-      "title": title.${locale},
-      "ingress": ingress.${locale},
-      "url": slug.current
+    featuredProducts[][0...6]-> {
+      _id,
+      "name": name.${locale},
+      "slug": slug.current,
+      images[] {
+        _key,
+        "url": asset->url,
+        "alt": alt,
+        "lqip": asset->metadata.lqip
+      },
+      collection-> {
+        "title": title.${locale},
+        "slug": slug.current
+      }
     },
   },
 }`;
@@ -208,15 +212,12 @@ export const ALL_PRODUCTS_GROQ = (locale = "en") => `
   _id,
   "name": name.${locale},
   "slug": slug.current,
-  price,
-  compareAtPrice,
   images[] {
     _key,
     "url": asset->url,
     "alt": alt,
     "lqip": asset->metadata.lqip
   },
-  sizes,
   collection-> {
     "title": title.${locale},
     "slug": slug.current
@@ -229,15 +230,12 @@ export const PRODUCT_BY_SLUG_GROQ = (slug: string, locale = "en") => `
   "name": name.${locale},
   "slug": slug.current,
   "description": description.${locale},
-  price,
-  compareAtPrice,
   images[] {
     _key,
     "url": asset->url,
     "alt": alt,
     "lqip": asset->metadata.lqip
   },
-  sizes,
   collection-> {
     "title": title.${locale},
     "slug": slug.current
@@ -250,15 +248,12 @@ export const PRODUCTS_BY_COLLECTION_GROQ = (collectionSlug: string, locale = "en
   _id,
   "name": name.${locale},
   "slug": slug.current,
-  price,
-  compareAtPrice,
   images[] {
     _key,
     "url": asset->url,
     "alt": alt,
     "lqip": asset->metadata.lqip
   },
-  sizes,
   collection-> {
     "title": title.${locale},
     "slug": slug.current

@@ -6,10 +6,14 @@ import { contact } from "@/lib/sanity";
 import { translate } from "@/lib/utils/lang/translate";
 import { usePathname } from "next/navigation";
 
-interface ContactFormProps {
-  services: any[];
-}
-export function ContactForm({ services }: ContactFormProps) {
+const INQUIRY_TYPES = [
+  "product_question",
+  "returns_exchanges",
+  "shipping",
+  "general_inquiry",
+] as const;
+
+export function ContactForm() {
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "sv";
   const [isSending, setIsSending] = useState(false);
@@ -81,12 +85,9 @@ export function ContactForm({ services }: ContactFormProps) {
                     }}
                   >
                     <option value=""></option>
-                    <option value={translate("other", locale)}>
-                      {translate("other", locale)}
-                    </option>
-                    {services.map((service: any) => (
-                      <option key={service.title} value={service.title}>
-                        {service.title}
+                    {INQUIRY_TYPES.map((key) => (
+                      <option key={key} value={translate(key, locale)}>
+                        {translate(key, locale)}
                       </option>
                     ))}
                   </select>

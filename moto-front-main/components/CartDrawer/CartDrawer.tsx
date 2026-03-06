@@ -11,7 +11,7 @@ import Link from "next/link";
 import styles from "./CartDrawer.module.scss";
 
 export function CartDrawer() {
-  const { items, cartTotal, isDrawerOpen, closeDrawer } = useCart();
+  const { items, cartTotal, cartCurrency, isDrawerOpen, closeDrawer } = useCart();
   const pathname = usePathname();
   const locale = pathname.startsWith("/en") ? "en" : "sv";
 
@@ -78,7 +78,7 @@ export function CartDrawer() {
             <div className={styles.subtotalRow}>
               <span>{translate("subtotal", locale)}</span>
               <span className={styles.subtotalAmount}>
-                {formatPrice(cartTotal, locale)}
+                {formatPrice(cartTotal, locale, cartCurrency)}
               </span>
             </div>
             <Link

@@ -150,6 +150,16 @@
     color: $color-surface;
     border-color: $color-foreground;
   }
+
+  &.sizeDisabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    text-decoration: line-through;
+
+    &:hover {
+      border-color: $color-border;
+    }
+  }
 }
 
 .addToCart {

@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer/Footer";
 import {
   GENERAL_SETTINGS,
   HOME_PAGE_SEO,
-  SERVICE_GROQ,
+  COLLECTIONS_GROQ,
   client,
 } from "@/lib/sanity";
 import { ExternalScripts } from "@/components/ExternalScripts/ExternalScripts";
@@ -39,9 +39,9 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const [settings, services] = await Promise.all([
+  const [settings, collections] = await Promise.all([
     client.fetch<any>(GENERAL_SETTINGS(locale), {}, { next: { revalidate: 60 } }),
-    client.fetch<any>(SERVICE_GROQ(locale), {}, { next: { revalidate: 60 } }),
+    client.fetch<any>(COLLECTIONS_GROQ(locale), {}, { next: { revalidate: 60 } }),
   ]);
 
   return (
@@ -50,7 +50,7 @@ export default async function RootLayout({
         <CartProvider>
           <Header />
           {children}
-          <Footer footer={settings?.footer} services={services || []} />
+          <Footer footer={settings?.footer} collections={collections || []} />
           <CartDrawer />
           <ExternalScripts cookieSettings={settings?.cookieSettings} nonce={""} />
         </CartProvider>

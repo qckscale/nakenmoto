@@ -28,15 +28,15 @@ export default defineType({
     }),
 
     defineField({
-      title: 'Service title',
-      name: 'serviceTitle',
+      title: 'Featured products title',
+      name: 'featuredProductsTitle',
       type: 'localeString',
     }),
     defineField({
-      title: 'Services',
-      name: 'services',
+      title: 'Featured Products',
+      name: 'featuredProducts',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'services'}]}],
+      of: [{type: 'reference', to: [{type: 'product'}]}],
     }),
     defineField({
       title: 'Blog title',

@@ -24,6 +24,7 @@ interface CartContextValue {
   clearCart: () => void;
   cartCount: number;
   cartTotal: number;
+  cartCurrency: "SEK" | "EUR";
   isDrawerOpen: boolean;
   openDrawer: () => void;
   closeDrawer: () => void;
@@ -114,6 +115,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     (sum, i) => sum + i.product.price * i.quantity,
     0
   );
+  const cartCurrency = items.length > 0 ? items[0].product.currency : "SEK";
 
   return (
     <CartContext.Provider
@@ -125,6 +127,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         cartCount,
         cartTotal,
+        cartCurrency,
         isDrawerOpen,
         openDrawer,
         closeDrawer,

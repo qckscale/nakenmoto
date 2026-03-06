@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Product } from "@/types/product";
 import { formatPrice } from "@/lib/utils/formatPrice";
+import { getLocalizedPrice } from "@/lib/utils/getLocalizedPrice";
 import { i18Link } from "@/lib/utils/lang/getLink";
 import styles from "./ProductCard.module.scss";
 
@@ -11,8 +12,11 @@ interface Props {
 
 export function ProductCard({ product, locale }: Props) {
   const imageUrl = product.images?.[0]?.url;
-  const isOnSale =
-    product.compareAtPrice != null && product.compareAtPrice > product.price;
+  const { price, compareAtPrice, currency } = getLocalizedPrice(
+    product.pricing,
+    locale
+  );
+  const isOnSale = compareAtPrice != null && compareAtPrice > price;
 
   return (
     <Link
@@ -37,11 +41,11 @@ export function ProductCard({ product, locale }: Props) {
         <h3 className={styles.name}>{product.name}</h3>
         <div className={styles.priceBlock}>
           <span className={isOnSale ? styles.salePrice : undefined}>
-            {formatPrice(product.price, locale)}
+            {formatPrice(price, locale, currency)}
           </span>
           {isOnSale && (
             <span className={styles.comparePrice}>
-              {formatPrice(product.compareAtPrice!, locale)}
+              {formatPrice(compareAtPrice!, locale, currency)}
             </span>
           )}
         </div>

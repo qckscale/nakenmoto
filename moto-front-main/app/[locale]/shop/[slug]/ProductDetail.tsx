@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Product } from "@/types/product";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/utils/formatPrice";
+import { getLocalizedPrice } from "@/lib/utils/getLocalizedPrice";
 import { translate } from "@/lib/utils/lang/translate";
 import BlockContent from "@/components/BlockContent/BlockContent";
 import styles from "./ProductDetail.module.scss";
@@ -18,6 +19,11 @@ export function ProductDetail({ product, locale }: Props) {
   const [activeImage, setActiveImage] = useState(0);
   const { addItem } = useCart();
 
+  const { price, compareAtPrice, currency } = getLocalizedPrice(
+    product.pricing,
+    locale
+  );
+
   const handleAddToCart = () => {
     if (!selectedSize) return;
     addItem(
@@ -25,17 +31,18 @@ export function ProductDetail({ product, locale }: Props) {
         id: product._id,
         name: product.name,
         slug: product.slug,
-        price: product.price,
-        compareAtPrice: product.compareAtPrice,
-        image: product.images[0]?.url || "",
+        price,
+        compareAtPrice,
+        image: product.images?.[0]?.url || "",
+        currency,
       },
       selectedSize
     );
   };
 
-  const isOnSale =
-    product.compareAtPrice != null && product.compareAtPrice > product.price;
+  const isOnSale = compareAtPrice != null && compareAtPrice > price;
   const currentImage = product.images?.[activeImage];
+  const variants = product.pricing.variants;
 
   return (
     <div className="container-width container-width-page">
@@ -51,7 +58,7 @@ export function ProductDetail({ product, locale }: Props) {
               />
             )}
           </div>
-          {product.images.length > 1 && (
+          {product.images?.length > 1 && (
             <div className={styles.thumbnails}>
               {product.images.map((img, i) => (
                 <button
@@ -80,30 +87,41 @@ export function ProductDetail({ product, locale }: Props) {
 
           <div className={styles.priceBlock}>
             <span className={isOnSale ? styles.salePrice : styles.price}>
-              {formatPrice(product.price, locale)}
+              {formatPrice(price, locale, currency)}
             </span>
             {isOnSale && (
               <span className={styles.comparePrice}>
-                {formatPrice(product.compareAtPrice!, locale)}
+                {formatPrice(compareAtPrice!, locale, currency)}
               </span>
             )}
           </div>
 
-          {product.sizes?.length > 0 && (
+          {variants.length > 0 && (
             <div className={styles.sizeSection}>
               <span className={styles.sizeLabel}>
                 {translate("select_size", locale)}
               </span>
               <div className={styles.sizes}>
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    className={`${styles.sizeBtn} ${selectedSize === size ? styles.sizeActive : ""}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
+                {variants.map((variant) => {
+                  const outOfStock = variant.stock_count <= 0;
+                  return (
+                    <button
+                      key={variant.size}
+                      className={`${styles.sizeBtn} ${selectedSize === variant.size ? styles.sizeActive : ""} ${outOfStock ? styles.sizeDisabled : ""}`}
+                      onClick={() =>
+                        !outOfStock && setSelectedSize(variant.size)
+                      }
+                      disabled={outOfStock}
+                      title={
+                        outOfStock
+                          ? translate("out_of_stock", locale)
+                          : undefined
+                      }
+                    >
+                      {variant.size}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}

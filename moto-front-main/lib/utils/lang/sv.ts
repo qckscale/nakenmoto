@@ -38,4 +38,10 @@ export const sv: Record<string, string> = {
   your_cart: "Din varukorg",
   select_size: "Välj storlek",
   free_shipping: "Fri frakt",
+  product_question: "Produktfråga",
+  returns_exchanges: "Returer & byten",
+  shipping: "Frakt",
+  general_inquiry: "Allmän förfrågan",
+  out_of_stock: "Slut i lager",
+  featured_products: "Utvalda produkter",
 };
