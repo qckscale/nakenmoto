@@ -10,7 +10,7 @@ interface Slug {
 async function getSitemap(locale = "sv"): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.BASE_URL;
 
-  const [{ page, articles, work, products, collections }] = await Promise.all([
+  const [{ page, articles, products, collections }] = await Promise.all([
     client.fetch<any>(SITEMAP_GROQ(locale), {}, { next: { revalidate: 60 } }),
   ]);
 
@@ -18,7 +18,6 @@ async function getSitemap(locale = "sv"): Promise<MetadataRoute.Sitemap> {
     ...addSlugPrefixes(page, "page"),
     ...addSlugPrefixes(articles, "news"),
     ...addSlugPrefixes(products || [], "shop"),
-    ...addSlugPrefixes(work, "lookbook"),
   ].map((item: Slug) => {
     return {
       url: `${baseUrl}/${locale}/${item.slug}`,
@@ -65,18 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
       {
         url: `${baseUrl}/en/collections`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: "daily",
-        priority: 1.0,
-      },
-      {
-        url: `${baseUrl}/sv/lookbook`,
-        lastModified: new Date().toISOString(),
-        changeFrequency: "daily",
-        priority: 1.0,
-      },
-      {
-        url: `${baseUrl}/en/lookbook`,
         lastModified: new Date().toISOString(),
         changeFrequency: "daily",
         priority: 1.0,

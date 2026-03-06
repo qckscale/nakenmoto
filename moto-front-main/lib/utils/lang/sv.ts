@@ -44,4 +44,6 @@ export const sv: Record<string, string> = {
   general_inquiry: "Allmän förfrågan",
   out_of_stock: "Slut i lager",
   featured_products: "Utvalda produkter",
+  view_product: "Visa produkt",
+  view_collection: "Visa kollektion",
 };

@@ -64,14 +64,8 @@ export function Header() {
           <Link href={i18Link("collections", locale)}>
             {translate("collections", locale)}
           </Link>
-          <Link href={i18Link("lookbook", locale)}>
-            {translate("lookbook", locale)}
-          </Link>
           <Link href={i18Link("news", locale)}>
             {translate("journal", locale)}
-          </Link>
-          <Link href={i18Link("page/about-us", locale)}>
-            {translate("about", locale)}
           </Link>
           <Link href={i18Link("contact", locale)}>
             {translate("contact", locale)}
@@ -82,7 +76,7 @@ export function Header() {
           </div>
         </li>
         <li className={styles.burgerItem}>
-          <div className="d-flex align-center">
+          <div className={styles.burgerActions}>
             <CartIcon />
             <LanguageSelector locale={locale} headerBg={false} />
             <button

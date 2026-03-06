@@ -6,24 +6,16 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      title: 'Title',
-      name: 'title',
-      description: 'The H1-tag',
-      type: 'localeString',
-    }),
-    defineField({
-      title: 'Heo image',
-      name: 'heroImage',
-      type: 'image',
+      title: 'Hero Slides',
+      name: 'heroSlides',
+      description: 'Products to feature in the hero slider (max 5)',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'product'}]}],
+      validation: (Rule) => Rule.max(5),
     }),
     defineField({
       title: 'Call-to-action Primary text',
       name: 'ctaPrimary',
-      type: 'localeString',
-    }),
-    defineField({
-      title: 'Call-to-action Secondary text',
-      name: 'ctaSecondary',
       type: 'localeString',
     }),
 

@@ -29,7 +29,6 @@ export default defineConfig({
               .child(S.documentTypeList('category').title('Categories')),
             S.listItem().title('Pages').child(S.documentTypeList('page').title('Pages')),
             S.listItem().title('Authors').child(S.documentTypeList('author').title('Authors')),
-            S.listItem().title('Work').child(S.documentTypeList('work').title('Work')),
             S.listItem()
               .title('Testimonials')
               .child(S.documentTypeList('testimonial').title('Testimonial')),

@@ -45,11 +45,22 @@ export const HOME_PAGE_SETTINGS = (locale = "en") => `
 *[_type == "generalSettings"][0] {
   homePage-> {
     ...,
-    "heroImage": heroImage.asset->url,
+    heroSlides[][0...5]-> {
+      _id,
+      "name": name.${locale},
+      "slug": slug.current,
+      images[0] {
+        "url": asset->url,
+        "alt": alt,
+        "lqip": asset->metadata.lqip
+      },
+      collection-> {
+        "title": title.${locale},
+        "slug": slug.current
+      }
+    },
     "newsTitle": newsTitle.${locale},
-    "title": title.${locale},
     "ctaPrimary": ctaPrimary.${locale},
-    "ctaSecondary": ctaSecondary.${locale},
     "featuredProductsTitle": featuredProductsTitle.${locale},
     "testimonialTitle": testimonialTitle.${locale},
     "testimonialSubtitle": testimonialSubtitle.${locale},
@@ -191,7 +202,6 @@ export const HOMEPAGE_GROQ = (locale = "en") => `
 {
   "page": ${HOME_PAGE_SETTINGS(locale)},
   "articles": ${ARTICLES_GROQ(0, 3, locale)},
-  "work": ${WORK_GROQ(locale)},
   "authors": *[_type == "author"] {
     name,
     "title": title.${locale},
@@ -202,6 +212,26 @@ export const HOMEPAGE_GROQ = (locale = "en") => `
     "title": title.${locale},
     "quote": quote.${locale},
     "thumbnail": thumbnail.asset->url
+  },
+  "collections": *[_type == "collection"] {
+    _id,
+    "title": title.${locale},
+    "slug": slug.current,
+    "products": *[_type == "product" && references(^._id)][0...6] {
+      _id,
+      "name": name.${locale},
+      "slug": slug.current,
+      images[] {
+        _key,
+        "url": asset->url,
+        "alt": alt,
+        "lqip": asset->metadata.lqip
+      },
+      collection-> {
+        "title": title.${locale},
+        "slug": slug.current
+      }
+    }
   }
 }`;
 
@@ -333,7 +363,6 @@ export const SITEMAP_GROQ = (lang = "sv") => `
   "page": ${PAGES_SITEMAP(lang)},
   "articles": ${ARTICLES_SITEMAP(lang)},
   "services": ${SERVICES_SITEMAP(lang)},
-  "work": ${WORK_SITEMAP(lang)},
   "products": ${PRODUCTS_SITEMAP(lang)},
   "collections": ${COLLECTIONS_SITEMAP(lang)}
 }`;

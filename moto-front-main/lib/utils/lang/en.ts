@@ -44,4 +44,6 @@ export const en: Record<string, string> = {
   general_inquiry: "General inquiry",
   out_of_stock: "Out of stock",
   featured_products: "Featured products",
+  view_product: "View product",
+  view_collection: "View collection",
 };
