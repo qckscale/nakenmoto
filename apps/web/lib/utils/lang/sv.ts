@@ -42,4 +42,11 @@ export const sv: Record<string, string> = {
   featured_products: "Utvalda produkter",
   view_product: "Visa produkt",
   view_collection: "Visa kollektion",
+  checkout_coming_soon: "Kassan kommer snart",
+  checkout_coming_soon_body:
+    "Vi lägger sista handen vid kassan. Kom tillbaka snart!",
+  error_heading: "Något gick fel",
+  error_body: "Ett oväntat fel inträffade. Försök igen.",
+  try_again: "Försök igen",
+  back_to_shop: "Tillbaka till shoppen",
 };

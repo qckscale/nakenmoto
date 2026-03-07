@@ -42,4 +42,11 @@ export const en: Record<string, string> = {
   featured_products: "Featured products",
   view_product: "View product",
   view_collection: "View collection",
+  checkout_coming_soon: "Checkout coming soon",
+  checkout_coming_soon_body:
+    "We're putting the finishing touches on our checkout. Check back soon!",
+  error_heading: "Something went wrong",
+  error_body: "An unexpected error occurred. Please try again.",
+  try_again: "Try again",
+  back_to_shop: "Back to shop",
 };
