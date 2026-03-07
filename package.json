@@ -1,0 +1,12 @@
+{
+  "name": "nakenmoto",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "lint": "npm run lint --workspace=apps/web",
+    "studio:dev": "npm run dev --workspace=apps/studio",
+    "studio:deploy": "npm run deploy --workspace=apps/studio"
+  }
+}
