@@ -278,15 +278,23 @@ async function syncPage(
       break;
   }
 
-  await sanity.createOrReplace(doc);
-  console.log(`  -> Created/replaced ${contentType} "${slug}" in Sanity`);
+  // Upsert: patch existing docs to preserve images/thumbnails set in Sanity Studio
+  const { _id, _type, ...fields } = doc;
+  const exists = await sanity.fetch("count(*[_id == $id])", { id: _id });
+  if (exists) {
+    await sanity.patch(_id).set(fields).commit();
+    console.log(`  -> Patched ${contentType} "${slug}" in Sanity`);
+  } else {
+    await sanity.create(doc);
+    console.log(`  -> Created ${contentType} "${slug}" in Sanity`);
+  }
 
   // Update Notion status to "Publicerad"
   try {
     await notion.pages.update({
       page_id: pageId,
       properties: {
-        Status: { status: { name: STATUS_PUBLISHED } },
+        Status: { select: { name: STATUS_PUBLISHED } },
       },
     });
     console.log(`  -> Notion status set to "${STATUS_PUBLISHED}"`);
@@ -309,7 +317,7 @@ async function syncBatch(
       database_id: dbId,
       filter: {
         property: "Status",
-        status: { equals: STATUS_READY },
+        select: { equals: STATUS_READY },
       },
     });
 
