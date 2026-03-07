@@ -3,7 +3,6 @@ import category from './category'
 import post from './post'
 import author from './author'
 import page from './page'
-import services from './services'
 import generalSettings from './generalSettings'
 import footer from './footer'
 import seo from './seo'
@@ -13,7 +12,6 @@ import localeString from './localeString'
 import localeText from './localeText'
 import localeTitle from './localeTitle'
 import cookieSettings from './cookieSettings'
-import work from './work'
 import testimonial from './testimonial'
 import collection from './collection'
 import product from './product'
@@ -21,13 +19,11 @@ import product from './product'
 export const schemaTypes = [
   product,
   collection,
-  work,
   testimonial,
   homePage,
   seo,
   footer,
   generalSettings,
-  services,
   page,
   cookieSettings,
   post,

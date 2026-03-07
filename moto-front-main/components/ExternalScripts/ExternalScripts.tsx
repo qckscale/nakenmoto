@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
 export function ExternalScripts({
   nonce,
   cookieSettings,
@@ -30,19 +32,23 @@ export function ExternalScripts({
     <>
       {didAccept ? (
         <>
-          <Script
-            nonce={nonce}
-            src={`https://www.googletagmanager.com/gtag/js?id=G-LZ6ELNE4R8`}
-            strategy="lazyOnload"
-          />
-          <Script nonce={nonce} id="google-analytics" strategy="lazyOnload">
-            {`
+          {GA_ID && (
+            <>
+              <Script
+                nonce={nonce}
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+                strategy="lazyOnload"
+              />
+              <Script nonce={nonce} id="google-analytics" strategy="lazyOnload">
+                {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-LZ6ELNE4R8');
+          gtag('config', '${GA_ID}');
         `}
-          </Script>
+              </Script>
+            </>
+          )}
         </>
       ) : (
         <CookieConsent

@@ -62,8 +62,6 @@ export const HOME_PAGE_SETTINGS = (locale = "en") => `
     "newsTitle": newsTitle.${locale},
     "ctaPrimary": ctaPrimary.${locale},
     "featuredProductsTitle": featuredProductsTitle.${locale},
-    "testimonialTitle": testimonialTitle.${locale},
-    "testimonialSubtitle": testimonialSubtitle.${locale},
     featuredProducts[][0...6]-> {
       _id,
       "name": name.${locale},
@@ -87,19 +85,6 @@ export const HOME_PAGE_SEO = (locale = "en") => `
   ${LOCALIZED_SEO(locale)},
 }`;
 
-export const WORK_SEO = (url: string, locale = "en") => `
-*[_type == "work" && slug.current == "${url}"][0] {
-  "seo": ${LOCALIZED_SEO(locale)},
-  "title": title.${locale},
-  "ingress": ingress.${locale}
-}`;
-export const SERVICE_SEO = (url: string, locale = "en") => `
-*[_type == "services" && slug.current == "${url}"][0] {
-  "seo": ${LOCALIZED_SEO(locale)},
-  "title": title.${locale},
-  "ingress": ingress.${locale}
-}`;
-
 export const BLOG_SEO = (url: string, locale = "en") => `
 *[_type == "post" && slug.current == "${url}"][0] {
   "seo": ${LOCALIZED_SEO(locale)},
@@ -114,33 +99,6 @@ export const PAGE_SEO = (url: string, locale = "en") => `
   "ingress": ingress.${locale}
 }`;
 
-export const SERVICE_GROQ = (locale = "en") => `
-*[_type == "services"] | order(order asc) {
-  "title": title.${locale},
-  "icon": icon.asset->url,
-  "ingress": ingress.${locale},
-  "url": slug.current,
-  "content": content.${locale},
-}`;
-
-export const GET_ONE_CUSTOMER_CASE = (url: string, locale = "en") => `
-*[_type == "work" && slug.current == "${url}"][0] {
-  "title": title.${locale},
-  thumbnail,
-  "ingress": ingress.${locale},
-  "url": slug.current,
-  "content": content.${locale},
-}
-`;
-export const GET_ONE_SERVICE_GROQ = (url: string, locale = "en") => `
-*[_type == "services" && slug.current == "${url}"][0] {
-  "title": title.${locale},
-  thumbnail,
-  "ingress": ingress.${locale},
-  "url": slug.current,
-  "content": content.${locale},
-}
-`;
 export const GET_ONE_ARTICLES_GROQ = (url: string, locale = "en") => `
 *[_type == "post" && slug.current == "${url}"][0] {
   "title": title.${locale},
@@ -180,24 +138,6 @@ export const ARTICLES_GROQ = (page = 0, itemsPerPage = 12, locale = "en") => `
 }
 `;
 
-export const WORK_GROQ = (locale = "en") => {
-  return `
-  *[_type == "work"][0...6] {
-    "title": title.${locale},
-    "ingress": ingress.${locale},
-    "thumbnail": thumbnail.asset->url,
-    "url": slug.current
-  }`;
-};
-
-export const ALL_WORK_GROQ = (locale = "en") => `
-*[_type == "work"] {
-  "title": title.${locale},
-  "ingress": ingress.${locale},
-  "thumbnail": thumbnail.asset->url,
-  "url": slug.current
-}`;
-
 export const HOMEPAGE_GROQ = (locale = "en") => `
 {
   "page": ${HOME_PAGE_SETTINGS(locale)},
@@ -206,12 +146,6 @@ export const HOMEPAGE_GROQ = (locale = "en") => `
     name,
     "title": title.${locale},
     "image": image.asset->url
-  },
-  "testimonials": *[_type == "testimonial"] {
-    "name": name,
-    "title": title.${locale},
-    "quote": quote.${locale},
-    "thumbnail": thumbnail.asset->url
   },
   "collections": *[_type == "collection"] {
     _id,
@@ -290,6 +224,31 @@ export const PRODUCTS_BY_COLLECTION_GROQ = (collectionSlug: string, locale = "en
   }
 }`;
 
+export const COLLECTION_BY_SLUG_GROQ = (slug: string, locale = "en") => `
+*[_type == "collection" && slug.current == "${slug}"][0] {
+  _id,
+  "title": title.${locale},
+  "slug": slug.current,
+  "description": description.${locale},
+  "image": image.asset->url,
+  "products": *[_type == "product" && references(^._id)] | order(_createdAt desc) {
+    _id,
+    "name": name.${locale},
+    "slug": slug.current,
+    images[] {
+      _key,
+      "url": asset->url,
+      "alt": alt,
+      "lqip": asset->metadata.lqip
+    },
+    collection-> {
+      "title": title.${locale},
+      "slug": slug.current
+    }
+  },
+  "seo": ${LOCALIZED_SEO(locale)}
+}`;
+
 export const COLLECTIONS_GROQ = (locale = "en") => `
 *[_type == "collection"] | order(order asc) {
   _id,
@@ -328,21 +287,6 @@ export const ARTICLES_SITEMAP = (locale: string) => `
 }
 `;
 
-export const SERVICES_SITEMAP = (locale = "sv") => `
-*[_type == "services"] {
-  "slug": slug.current,
-  "lastModified": _updatedAt,
-  "priority": 0.9
-}
-`;
-export const WORK_SITEMAP = (locale = "sv") => `
-*[_type == "work"] {
-  "slug": slug.current,
-  "lastModified": _updatedAt,
-  "priority": 0.9
-}
-`;
-
 export const PRODUCTS_SITEMAP = (locale = "sv") => `
 *[_type == "product"] {
   "slug": slug.current,
@@ -362,7 +306,6 @@ export const SITEMAP_GROQ = (lang = "sv") => `
 {
   "page": ${PAGES_SITEMAP(lang)},
   "articles": ${ARTICLES_SITEMAP(lang)},
-  "services": ${SERVICES_SITEMAP(lang)},
   "products": ${PRODUCTS_SITEMAP(lang)},
   "collections": ${COLLECTIONS_SITEMAP(lang)}
 }`;

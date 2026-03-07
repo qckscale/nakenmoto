@@ -35,9 +35,9 @@ export default defineType({
     }),
     defineField({
       name: 'pagesOfInterest',
-      title: 'MadIT links',
+      title: 'Footer links',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'page'}, {type: 'services'}]}],
+      of: [{type: 'reference', to: [{type: 'page'}]}],
     }),
     defineField({
       name: 'copyrightText',
