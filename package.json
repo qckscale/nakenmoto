@@ -1,7 +1,7 @@
 {
   "name": "nakenmoto",
   "private": true,
-  "workspaces": ["apps/*"],
+  "workspaces": ["apps/*", "scripts"],
   "scripts": {
     "dev": "npm run dev --workspace=apps/web",
     "build": "npm run build --workspace=apps/web",

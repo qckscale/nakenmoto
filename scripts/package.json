@@ -1,0 +1,10 @@
+{
+  "name": "scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "@sanity/client": "^6.21.3",
+    "tsx": "^4.19.1"
+  }
+}
