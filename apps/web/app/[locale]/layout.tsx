@@ -1,7 +1,7 @@
 import type { Viewport } from "next";
 import { Header } from "@/components/Header/Header";
 import "../globals.scss";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/Footer/Footer";
 import {
   GENERAL_SETTINGS,
@@ -13,9 +13,10 @@ import { ExternalScripts } from "@/components/ExternalScripts/ExternalScripts";
 import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/CartDrawer/CartDrawer";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
+  colorScheme: 'dark light',
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#F5F2ED" },
     { media: "(prefers-color-scheme: dark)", color: "#0F0F0F" },
@@ -54,7 +55,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={spaceGrotesk.className}>
         <CartProvider>
           <Header />
           {children}
