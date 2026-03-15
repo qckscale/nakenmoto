@@ -89,6 +89,8 @@
 }
 
 .socialIcons {
+  display: flex;
+  align-items: center;
   @include mobile {
     margin: 30px auto 0;
   }
