@@ -14,22 +14,22 @@
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: $spacing-md;
-  color: $color-foreground;
+  color: var(--color-fg);
 }
 
 .text {
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   margin-bottom: $spacing-xl;
   max-width: 400px;
   line-height: 1.6;
 }
 
 .link {
-  color: $color-foreground;
+  color: var(--color-fg);
   text-decoration: underline;
   text-underline-offset: 3px;
 
   &:hover {
-    color: $color-foreground-muted;
+    color: var(--color-fg-muted);
   }
 }

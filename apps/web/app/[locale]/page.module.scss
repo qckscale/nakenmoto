@@ -14,12 +14,12 @@
 
 .spotlightLink {
   font-size: 0.875rem;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: color 0.2s ease;
 
   &:hover {
-    color: $color-foreground;
+    color: var(--color-fg);
   }
 }

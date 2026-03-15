@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   padding: 4px;
-  color: $color-foreground;
+  color: var(--color-fg);
 
   &:hover {
     opacity: 0.6;
@@ -19,8 +19,8 @@
   position: absolute;
   top: -4px;
   right: -6px;
-  background: $color-accent;
-  color: $color-surface;
+  background: var(--color-accent);
+  color: var(--color-surface);
   font-size: 10px;
   font-weight: 600;
   width: 18px;

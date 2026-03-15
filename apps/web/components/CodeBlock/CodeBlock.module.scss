@@ -1,14 +1,14 @@
 @use "../../styles/variables" as *;
 
 .codeBlockToolbar {
-  background: $color-surface-alt;
+  background: var(--color-surface-alt);
   border-radius: 4px 4px 0 0;
-  border-bottom: 2px solid $color-border;
+  border-bottom: 2px solid var(--color-border);
   button {
     padding: 0;
     border: 0;
     background: none;
-    color: $color-foreground;
+    color: var(--color-fg);
     padding: 4px 30px;
     gap: 8px;
   }
@@ -18,7 +18,7 @@
   padding: 30px;
   border-radius: 0 0 4px 4px;
   display: block;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background: $color-background-dark;
+  box-shadow: 0 4px 20px var(--color-shadow);
+  background: var(--color-bg-dark);
   overflow: auto;
 }

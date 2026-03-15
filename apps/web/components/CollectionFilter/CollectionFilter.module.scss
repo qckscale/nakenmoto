@@ -12,18 +12,18 @@
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   text-decoration: none;
   padding-bottom: 4px;
   border-bottom: 1px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 
   &:hover {
-    color: $color-foreground;
+    color: var(--color-fg);
   }
 
   &.active {
-    color: $color-foreground;
-    border-bottom-color: $color-foreground;
+    color: var(--color-fg);
+    border-bottom-color: var(--color-fg);
   }
 }

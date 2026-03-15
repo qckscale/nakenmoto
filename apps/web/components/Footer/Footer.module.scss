@@ -5,7 +5,7 @@
   display: flex;
   width: 100%;
   padding-bottom: 80px;
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--color-border);
   padding-top: 60px;
 
   ul {
@@ -21,7 +21,7 @@
     }
   }
   .footerItem {
-    color: $color-foreground;
+    color: var(--color-fg);
     white-space: nowrap;
     @include tablet {
       margin-bottom: 30px;
@@ -37,7 +37,7 @@
     }
 
     h3 {
-      color: $color-foreground;
+      color: var(--color-fg);
       font-size: 1.2rem;
       margin-bottom: 30px;
       margin-top: 0;
@@ -51,13 +51,13 @@
     }
 
     a {
-      color: $color-foreground-muted;
+      color: var(--color-fg-muted);
       margin-bottom: 10px;
       display: block;
       text-decoration: none;
 
       &:hover {
-        color: $color-foreground;
+        color: var(--color-fg);
       }
     }
   }
@@ -65,13 +65,13 @@
 
 .companyDetailItem {
   margin-bottom: 10px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
 }
 
 .copyright {
-  background: $color-background-dark;
+  background: var(--color-bg-dark);
   padding: 25px 0;
-  color: $color-surface;
+  color: var(--color-on-dark);
 
   @include mobile {
     width: 100%;

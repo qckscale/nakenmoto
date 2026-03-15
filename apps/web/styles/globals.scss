@@ -2,19 +2,50 @@
 @use "variables" as *;
 
 :root {
-  --border-radius: 4px;
-  --primary: #{$color-background-dark};
-  --white: #{$color-surface};
+  --color-bg: #F5F2ED;
+  --color-bg-dark: #1A1A1A;
+  --color-fg: #1A1A1A;
+  --color-fg-muted: #6B6B6B;
+  --color-accent: #A0402A;
+  --color-accent-hover: #8A3520;
+  --color-accent-red: #C0181A;
+  --color-border: #D4CEC4;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EAE6DF;
+  --color-logo-mark: #1A1A1A;
+  --color-wordmark: #A0402A;
+  --color-on-dark: #F5F2ED;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-lg: rgba(0, 0, 0, 0.08);
+  --border-radius: #{$border-radius};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0F0F0F;
+    --color-fg: #F5F2ED;
+    --color-fg-muted: #9E9E9E;
+    --color-accent: #C0181A;
+    --color-accent-hover: #A0402A;
+    --color-accent-red: #C0181A;
+    --color-border: #2A2A2A;
+    --color-surface: #1A1A1A;
+    --color-surface-alt: #242424;
+    --color-logo-mark: #F5F2ED;
+    --color-wordmark: #C0181A;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-shadow-lg: rgba(0, 0, 0, 0.3);
+  }
 }
 
 *:focus-visible {
   outline-offset: 4px;
-  outline: 2px solid $color-accent;
+  outline: 2px solid var(--color-accent);
 }
 
 body {
-  background: $color-background;
-  color: $color-foreground;
+  background: var(--color-bg);
+  color: var(--color-fg);
 }
 
 .container-width {
@@ -91,14 +122,14 @@ button {
   }
 
   &.primary {
-    background: $color-accent;
-    border: 2px solid $color-accent;
-    color: $color-surface;
+    background: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    color: var(--color-surface);
   }
   &.secondary {
     background: transparent;
-    border: 2px solid $color-foreground;
-    color: $color-foreground;
+    border: 2px solid var(--color-fg);
+    color: var(--color-fg);
   }
   @include mobile {
     padding: 12px 20px;
@@ -107,13 +138,13 @@ button {
 }
 
 .heading-3 {
-  color: $color-foreground;
+  color: var(--color-fg);
   font-size: 19px;
   line-height: 32px;
 }
 
 .heading-2 {
-  color: $color-foreground;
+  color: var(--color-fg);
   text-align: center;
   font-size: 40px;
   margin-top: 0;
@@ -123,7 +154,7 @@ button {
     content: "";
     width: 60px;
     height: 2px;
-    background-color: $color-accent;
+    background-color: var(--color-accent);
     margin: 20px auto 40px;
 
     @include mobile {
@@ -143,7 +174,7 @@ button {
 
 .not-found {
   text-align: center;
-  color: $color-foreground;
+  color: var(--color-fg);
   padding: 120px 20px;
 }
 
@@ -171,12 +202,12 @@ button {
   flex-wrap: wrap;
 
   .list-wrapper__item {
-    background: $color-surface-alt;
+    background: var(--color-surface-alt);
     border-radius: var(--border-radius);
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    color: $color-foreground;
+    color: var(--color-fg);
     width: calc(33.33% - 22.5px);
 
     @include tablet {

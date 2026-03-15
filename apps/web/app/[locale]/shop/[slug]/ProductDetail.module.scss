@@ -24,7 +24,7 @@
 .mainImage {
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: $color-surface-alt;
+  background: var(--color-surface-alt);
 }
 
 .image {
@@ -55,7 +55,7 @@
 
   &.thumbActive {
     opacity: 1;
-    border-color: $color-foreground;
+    border-color: var(--color-fg);
   }
 
   img {
@@ -73,7 +73,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
 }
 
 .name {
@@ -105,7 +105,7 @@
 
 .comparePrice {
   font-size: 16px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   text-decoration: line-through;
 }
 
@@ -118,7 +118,7 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   margin-bottom: $spacing-sm;
 }
 
@@ -135,20 +135,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid $color-border;
+  border: 1px solid var(--color-border);
   font-size: 13px;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
 
   &:hover {
-    border-color: $color-foreground;
+    border-color: var(--color-fg);
   }
 
   &.sizeActive {
-    background: $color-foreground;
-    color: $color-surface;
-    border-color: $color-foreground;
+    background: var(--color-fg);
+    color: var(--color-surface);
+    border-color: var(--color-fg);
   }
 
   &.sizeDisabled {
@@ -157,7 +157,7 @@
     text-decoration: line-through;
 
     &:hover {
-      border-color: $color-border;
+      border-color: var(--color-border);
     }
   }
 }
@@ -165,8 +165,8 @@
 .addToCart {
   width: 100%;
   padding: 16px;
-  background: $color-accent;
-  color: $color-surface;
+  background: var(--color-accent);
+  color: var(--color-surface);
   border: none;
   text-transform: uppercase;
   font-size: 14px;
@@ -177,7 +177,7 @@
   margin-bottom: $spacing-xl;
 
   &:hover:not(:disabled) {
-    background: $color-accent-hover;
+    background: var(--color-accent-hover);
   }
 
   &:disabled {
@@ -187,9 +187,9 @@
 }
 
 .description {
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--color-border);
   padding-top: $spacing-lg;
   font-size: 15px;
   line-height: 1.7;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
 }

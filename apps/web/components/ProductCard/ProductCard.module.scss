@@ -2,14 +2,14 @@
 
 .card {
   text-decoration: none;
-  color: $color-foreground;
+  color: var(--color-fg);
   display: block;
 }
 
 .imageWrap {
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: $color-surface-alt;
+  background: var(--color-surface-alt);
 }
 
 .image {
@@ -31,7 +31,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
 }
 
 .name {
@@ -49,12 +49,12 @@
 }
 
 .salePrice {
-  color: $color-foreground;
+  color: var(--color-fg);
   font-weight: 500;
 }
 
 .comparePrice {
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   text-decoration: line-through;
   font-size: 13px;
 }

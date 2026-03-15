@@ -14,7 +14,7 @@
   bottom: 0;
   width: 420px;
   max-width: 100%;
-  background: $color-surface;
+  background: var(--color-surface);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: space-between;
   padding: $spacing-lg $spacing-lg;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
 }
 
@@ -51,7 +51,7 @@
   all: unset;
   font-size: 24px;
   cursor: pointer;
-  color: $color-foreground;
+  color: var(--color-fg);
   padding: 4px;
 
   &:hover {
@@ -71,13 +71,13 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: $color-foreground-muted;
+  color: var(--color-fg-muted);
   text-align: center;
   gap: $spacing-md;
 }
 
 .continueLink {
-  color: $color-foreground;
+  color: var(--color-fg);
   text-decoration: underline;
   text-underline-offset: 4px;
   font-size: 14px;
@@ -90,7 +90,7 @@
 .footer {
   flex-shrink: 0;
   padding: $spacing-lg;
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--color-border);
 }
 
 .subtotalRow {
@@ -111,8 +111,8 @@
   display: block;
   width: 100%;
   padding: 14px;
-  background: $color-accent;
-  color: $color-surface;
+  background: var(--color-accent);
+  color: var(--color-surface);
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -123,6 +123,6 @@
   cursor: pointer;
 
   &:hover {
-    background: $color-accent-hover;
+    background: var(--color-accent-hover);
   }
 }

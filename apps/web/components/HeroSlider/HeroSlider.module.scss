@@ -73,7 +73,7 @@
 }
 
 .productName {
-  color: $color-surface;
+  color: var(--color-surface);
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -1px;
@@ -123,14 +123,14 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1.5px solid $color-surface;
+  border: 1.5px solid var(--color-surface);
   background: transparent;
   padding: 0;
   cursor: pointer;
   transition: background 0.2s ease;
 
   &.dotActive {
-    background: $color-surface;
+    background: var(--color-surface);
   }
 }
 

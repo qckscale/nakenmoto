@@ -3,7 +3,7 @@
 .author {
   display: flex;
   gap: 30px;
-  border-top: 1px solid $color-border;
+  border-top: 1px solid var(--color-border);
   margin-top: 40px;
   padding-top: 40px;
   .authorImageWrapper {
@@ -18,7 +18,7 @@
     .authorName {
       font-size: 1.5rem;
       font-weight: 700;
-      color: $color-foreground;
+      color: var(--color-fg);
       margin: 0;
     }
     .authorTitle {
@@ -26,13 +26,13 @@
       font-size: 1.2rem;
       font-weight: 300;
       margin-bottom: 0;
-      color: $color-foreground-muted;
+      color: var(--color-fg-muted);
     }
     .publishDate {
       margin: 8px 0;
       font-size: 0.8rem;
       font-weight: 300;
-      color: $color-foreground-muted;
+      color: var(--color-fg-muted);
       margin: 0;
       display: flex;
       align-items: center;
@@ -41,14 +41,14 @@
   }
 
   .authorBadge {
-    background: $color-accent;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid $color-border;
+    background: var(--color-accent);
+    box-shadow: 0 2px 4px var(--color-shadow);
+    border: 1px solid var(--color-border);
     display: inline-block;
     font-size: 0.75rem;
     padding: 2px 8px;
     margin: 0;
-    color: $color-surface;
+    color: var(--color-surface);
     border-radius: 10px;
   }
 

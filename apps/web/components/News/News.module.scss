@@ -9,12 +9,12 @@
     flex-wrap: wrap;
 
     .newsContainerItem {
-      background: $color-surface;
+      background: var(--color-surface);
       border-radius: $border-radius;
       display: flex;
       text-decoration: none;
       flex-direction: column;
-      color: $color-foreground;
+      color: var(--color-fg);
       width: calc(33.33% - 22.5px);
 
       @include tablet {

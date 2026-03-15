@@ -1,20 +1,6 @@
 // NakenMoto Design Tokens
-$color-background: #f5f2ed;
-$color-background-dark: #1a1a1a;
-$color-foreground: #1a1a1a;
-$color-foreground-muted: #6b6b6b;
-$color-accent: #2d2d2d;
-$color-accent-hover: #1a1a1a;
-$color-border: #d4cec4;
-$color-surface: #ffffff;
-$color-surface-alt: #eae6df;
+// Color tokens are CSS custom properties — defined in globals.scss
 
-// Legacy aliases (keep during migration)
-$primary: $color-background-dark;
-$primary-faded: $color-foreground-muted;
-$primary-inverted: $color-foreground;
-$accent: $color-accent;
-$bg-color: $color-background;
 $border-radius: 4px;
 
 // Spacing

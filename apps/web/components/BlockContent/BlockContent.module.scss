@@ -1,7 +1,7 @@
 @use "../../styles/variables" as *;
 
 .blockContent {
-  color: $color-foreground;
+  color: var(--color-fg);
   font-weight: 300;
 
   blockquote {
@@ -10,8 +10,8 @@
     display: inline-block;
     border-radius: $border-radius;
     padding: 20px;
-    border-left: 3px solid $color-accent;
-    background: $color-surface-alt;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface-alt);
   }
 
   ul {
@@ -29,7 +29,7 @@
   }
 
   a {
-    color: $color-foreground;
+    color: var(--color-fg);
     text-decoration: underline;
     font-weight: 500;
 

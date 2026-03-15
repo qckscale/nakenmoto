@@ -1,3 +1,4 @@
+import type { Viewport } from "next";
 import { Header } from "@/components/Header/Header";
 import "../globals.scss";
 import { Inter } from "next/font/google";
@@ -13,6 +14,13 @@ import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/CartDrawer/CartDrawer";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F5F2ED" },
+    { media: "(prefers-color-scheme: dark)", color: "#0F0F0F" },
+  ],
+};
 
 export async function generateMetadata({
   params,

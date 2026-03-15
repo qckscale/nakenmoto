@@ -7,3 +7,4 @@ dist
 .sanity
 *.log
 .vercel/
+.serena/
