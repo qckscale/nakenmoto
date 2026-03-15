@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/Logo/Logo";
 import styles from "./Header.module.scss";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -44,13 +43,7 @@ export function Header() {
       <ul className={`d-flex align-center justify-between container-width ${styles.navList}`}>
         <li>
           <Link className="no-outline" href={i18Link("/", locale)}>
-            <Image
-              className={styles.logotype}
-              alt="NakenMoto"
-              width={160}
-              height={40}
-              src="/logo.svg"
-            />
+            <Logo className={styles.logotype} width={60} />
           </Link>
         </li>
         <li
@@ -70,7 +63,7 @@ export function Header() {
           <Link href={i18Link("contact", locale)}>
             {translate("contact", locale)}
           </Link>
-          <div className="hide-on-mob d-flex align-center" style={{ gap: "16px" }}>
+          <div className={`hide-on-mob d-flex align-center ${styles.desktopActions}`}>
             <CartIcon />
             <LanguageSelector size={24} headerBg={false} locale={locale} />
           </div>

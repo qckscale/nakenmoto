@@ -2,7 +2,7 @@
 
 .nav {
   margin-top: 20px;
-  position: relative;
+  padding: $spacing-sm 0;
   z-index: 2;
   position: sticky;
 
@@ -38,23 +38,17 @@
   padding: 0;
   list-style: none;
 
-  @include mobile {
-    padding: 0;
-  }
 }
 
 .logotype {
   display: block;
-  max-width: 160px;
-  @include mobile {
-    max-width: 120px;
-  }
+  width: 60px;
 }
 
 .menuListGutter {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: $spacing-lg;
   @include tablet {
     width: 100%;
     left: 0;
@@ -89,7 +83,11 @@
 .burgerActions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: $spacing-md;
+}
+
+.desktopActions {
+  gap: $spacing-md;
 }
 
 .burger {

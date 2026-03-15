@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/Logo/Logo";
 import styles from "./Footer.module.scss";
 import { usePathname } from "next/navigation";
 import { translate } from "@/lib/utils/lang/translate";
@@ -62,12 +63,7 @@ export function Footer({ footer, collections }: FooterProps) {
       <footer className={styles.footer}>
         <div className={`${styles.footerContent} container-width d-flex w100`}>
           <div className={styles.footerItem}>
-            <Image
-              alt="NakenMoto"
-              width={160}
-              height={40}
-              src="/logo.svg"
-            />
+            <Logo width={160} />
           </div>
           <div className={styles.footerItem}>
             <h3>{translate("collections", locale)}</h3>
@@ -127,7 +123,7 @@ export function Footer({ footer, collections }: FooterProps) {
 
             <div className={styles.socialIcons}>
               {footer.instagram && (
-                <a href={footer.instagram} target="_blank">
+                <a href={footer.instagram} target="_blank" rel="noopener noreferrer">
                   <Image
                     alt="Instagram"
                     width={24}
@@ -137,7 +133,7 @@ export function Footer({ footer, collections }: FooterProps) {
                 </a>
               )}
               {footer.linkedin && (
-                <a href={footer.linkedin} target="_blank">
+                <a href={footer.linkedin} target="_blank" rel="noopener noreferrer">
                   <Image
                     alt="LinkedIn"
                     width={24}
@@ -147,7 +143,7 @@ export function Footer({ footer, collections }: FooterProps) {
                 </a>
               )}
               {footer.twitter && (
-                <a href={footer.twitter} target="_blank">
+                <a href={footer.twitter} target="_blank" rel="noopener noreferrer">
                   <Image
                     alt="Twitter"
                     width={24}
@@ -157,7 +153,7 @@ export function Footer({ footer, collections }: FooterProps) {
                 </a>
               )}
               {footer.facebook && (
-                <a href={footer.facebook} target="_blank">
+                <a href={footer.facebook} target="_blank" rel="noopener noreferrer">
                   <Image
                     alt="Facebook"
                     width={24}

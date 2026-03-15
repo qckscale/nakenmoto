@@ -219,6 +219,10 @@ button {
   }
 }
 
+main {
+  padding-top: $spacing-xl;
+}
+
 .hide-on-mob {
   @include tablet {
     display: none;
