@@ -2,6 +2,7 @@
 @use "variables" as *;
 
 :root {
+  color-scheme: light;
   --color-bg: #F5F2ED;
   --color-bg-dark: #1A1A1A;
   --color-fg: #1A1A1A;
@@ -22,17 +23,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --color-bg: #0F0F0F;
     --color-fg: #F5F2ED;
     --color-fg-muted: #9E9E9E;
-    --color-accent: #C0181A;
-    --color-accent-hover: #A0402A;
+    --color-accent: #A0402A;
+    --color-accent-hover: #8A3520;
     --color-accent-red: #C0181A;
     --color-border: #2A2A2A;
     --color-surface: #1A1A1A;
     --color-surface-alt: #242424;
     --color-logo-mark: #F5F2ED;
-    --color-wordmark: #C0181A;
+    --color-wordmark: #A0402A;
     --color-shadow: rgba(0, 0, 0, 0.4);
     --color-shadow-lg: rgba(0, 0, 0, 0.3);
   }

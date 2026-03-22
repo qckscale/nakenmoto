@@ -10,3 +10,11 @@ img {
   display: block;
   max-width: 100%;
 }
+
+input,
+select,
+textarea {
+  background: var(--color-surface);
+  color: var(--color-fg);
+  border-color: var(--color-border);
+}

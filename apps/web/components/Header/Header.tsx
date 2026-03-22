@@ -43,7 +43,7 @@ export function Header() {
       <ul className={`d-flex align-center justify-between container-width ${styles.navList}`}>
         <li>
           <Link className="no-outline" href={i18Link("/", locale)}>
-            <Logo className={styles.logotype} width={60} />
+            <Logo className={styles.logotype} width={80} />
           </Link>
         </li>
         <li
